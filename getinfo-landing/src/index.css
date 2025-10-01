@@ -1,0 +1,89 @@
+@import "tailwindcss";
+:root{--gi-bg:#07090B;--gi-teal-100:#a3e7f0;--gi-teal-300:#6fd0df;--gi-teal-500:#2aa8bf;--gi-teal-700:#1b7d92;--gi-teal-900:#0f4b5a;--font-body:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--font-display:"Poppins",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;}
+html,body,#root{height:100%}body{background:var(--gi-bg);color:white;font-family:var(--font-body)}h1,h2,.font-display{font-family:var(--font-display)}
+.accent{color:var(--gi-teal-300)}.btn-pill{background:linear-gradient(90deg,var(--gi-teal-500),var(--gi-teal-700))}.pill{border-radius:9999px}.shadow-card{box-shadow:0 10px 40px #0006}.ring-teal{box-shadow:inset 0 0 0 2px var(--gi-teal-500)}.card-bg{background:linear-gradient(180deg,var(--gi-teal-300),var(--gi-teal-700))}
+.bg-white\/6{background-color:color-mix(in oklab,white 6%,transparent)}.bg-white\/8{background-color:color-mix(in oklab,white 8%,transparent)}.max-w-prose{max-width:65ch}.font-display{font-family:var(--font-display)}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+:root{
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-display: "Montserrat", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+
+/* smooth in-page scrolling + sticky navbar offset */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
+
+/* ===== Button animations ===== */
+@keyframes gi-gradient-x{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes gi-shine{0%{transform:translateX(-120%);opacity:0}20%{opacity:.35}100%{transform:translateX(250%);opacity:0}}
+@media (prefers-reduced-motion:reduce){.gi-anim,.gi-gradient{animation:none!important;transition:none!important}}
+.gi-btn{position:relative;isolation:isolate;transition:transform .18s ease,filter .18s ease;will-change:transform}
+.gi-btn:active{transform:translateY(1px) scale(.99)}
+.gi-btn.shine::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.6) 50%,transparent 65%);mix-blend-mode:screen;transform:translateX(-140%);opacity:0;border-radius:inherit;z-index:1}
+.gi-btn.shine:hover::after{animation:gi-shine .9s ease forwards}
+.gi-gradient{background:linear-gradient(90deg,var(--gi-teal-500),var(--gi-teal-700),var(--gi-teal-500));background-size:200% 200%;animation:gi-gradient-x 6s ease-in-out infinite}
+.gi-outline-hover:hover{background:color-mix(in oklab,white 8%,transparent)}
+.gi-btn-sm{padding:.5rem .9rem;font-size:.9rem}.gi-btn-md{padding:.75rem 1.25rem}.gi-btn-lg{padding:.85rem 1.5rem}
+/* === Neon card frame used in the hero === */
+.hero-frame {
+  border-radius: 22px;
+  background: rgba(255,255,255,.02);
+  box-shadow:
+    0 22px 60px rgba(0,0,0,.45),          /* ambient drop */
+    0 0 0 2px rgba(175, 236, 245, .5),    /* outer ring */
+    inset 0 0 0 2px rgba(111, 208, 223, .65); /* inner ring */
+  overflow: hidden; /* clip the image corners */
+}
+
+/* optional: subtle inner glow on hover */
+.hero-frame:hover { filter: brightness(1.03); }
+
+.hero-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* fill the frame */
+  object-position: center;
+}
+/* smooth anchors with navbar offset */
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (min-width:1024px){ html { scroll-padding-top: 84px; } }
+
+/* reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce){
+  * { animation-duration: 0s !important; transition-duration: 0ms !important; }
+}
+
+/* neon hero frame */
+.hero-frame {
+  border-radius: 22px;
+  background: rgba(255,255,255,.02);
+  box-shadow:
+    0 22px 60px rgba(0,0,0,.45),
+    0 0 0 2px rgba(175, 236, 245, .5),
+    inset 0 0 0 2px rgba(111, 208, 223, .65);
+  overflow: hidden;
+}
+.hero-frame:hover { filter: brightness(1.03); }
+
+/* checkerboard pattern for capsule */
+.tech-checker {
+  --c-a: color-mix(in oklab, white 20%, transparent);
+  --c-b: color-mix(in oklab, white 10%, transparent);
+  background:
+    linear-gradient(90deg, var(--c-a) 12.5%, transparent 12.5%, transparent 50%, var(--c-a) 50%, var(--c-a) 62.5%, transparent 62.5%, transparent 100%),
+    linear-gradient(0deg,  var(--c-b) 12.5%, transparent 12.5%, transparent 50%, var(--c-b) 50%, var(--c-b) 62.5%, transparent 62.5%, transparent 100%);
+  background-size: 120px 120px;
+  background-position: 0 0, 60px 60px;
+}
+
+/* cute floating dot */
+.float-dot {
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.35),
+    inset 0 0 0 2px color-mix(in oklab, var(--gi-teal-700) 65%, black 35%);
+}
